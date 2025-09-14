@@ -5,141 +5,265 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Reshma Shah – Data & AI Analytics Strategist</title>
   <style>
+    :root{
+      --brand-bg: #ff7043;     /* page background */
+      --card-accent: #fff7f0;  /* light orange cards */
+      --brand-orange:#e67e22;  /* headings in 4-box + testimonials */
+      --ink:#1a1a1a;
+      --muted:#555;
+      --link:#1a73e8;
+    }
+    /* Page */
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       margin: 0;
-      padding: 0;
-      background: #ff7043;
+      background: var(--brand-bg);
       color: #333;
     }
     .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
+      max-width: 900px;
+      margin: 2rem auto;              /* tighter top/bottom */
+      padding: 1.25rem 1.25rem;       /* tighter padding */
       background: #fff;
       box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-      margin-top: 3rem;
       border-radius: 12px;
-      position: relative;
-    }
-    .logo {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      height: 60px;
-      border-radius: 6px;
-    }
-    h1 {
-      color: #1a1a1a;
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-    h2 {
-      color: #666;
-      font-size: 1rem;
-      margin-top: 0;
-      font-weight: normal;
-    }
-    p, li {
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-    ul {
-      padding-left: 1.2rem;
-    }
-    .stats {
-      display: flex;
-      flex-wrap: wrap;
-      margin: 2rem 0;
-      gap: 1rem;
-    }
-    .stat-box {
-      flex: 1 1 200px;
-      background: #eef3fc;
-      padding: 1rem;
-      border-radius: 10px;
-      text-align: center;
-    }
-    .stat-box h3 {
-      margin: 0;
-      font-size: 1.4rem;
-      color: #1a73e8;
-    }
-    .stat-box p {
-      margin: 0.2rem 0 0;
-      font-size: 0.9rem;
-    }
-    .qr-code {
-      text-align: center;
-      margin-top: 2rem;
-    }
-    .contact {
-      margin-top: 2rem;
-      font-size: 0.95rem;
-    }
-    a {
-      color: #1a73e8;
-      text-decoration: none;
-    }
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      font-size: 0.8rem;
-      color: #999;
     }
 
-    /* ===== Lead-capture form ===== */
-    #lead-form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      margin: 2rem 0;
+    /* Header row: name + logo inline */
+    .hero{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      margin-bottom: .75rem;          /* reduce whitespace */
     }
+    h1 {
+      color: var(--ink);
+      font-size: 1.9rem;
+      line-height: 1.1;
+      margin: 0;
+    }
+    .logo-inline{
+      height:56px;                    /* matches heading visually */
+      width:auto;
+      border-radius: 6px;
+      object-fit: cover;
+      flex-shrink:0;
+    }
+
+    /* Intro directly under name */
+    .intro{
+      margin: .25rem 0 1rem 0;        /* compact */
+    }
+    .intro p{
+      margin:.25rem 0 .25rem 0;
+      color:#333;
+    }
+    .intro ul{
+      margin:.25rem 0 0 1rem;
+      padding:0;
+    }
+    .intro li{
+      line-height:1.45;
+      margin:.2rem 0;
+    }
+
+    /* Section title */
+    .section-title{
+      text-align:center;
+      margin: .75rem 0 1rem 0;        /* compact */
+      font-size: 1.4rem;
+      color: var(--ink);
+    }
+    .section-sub{
+      text-align:center;
+      color: var(--muted);
+      margin: 0 0 1.25rem 0;
+      font-size:1.02rem;
+    }
+
+    /* Light-orange feature grid */
+    .feature-section{
+      background: var(--card-accent);
+      border-radius: 10px;
+      padding: 1rem;
+      margin: .5rem 0 1.25rem 0;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: .9rem;                     /* tighter gaps */
+    }
+    .card{
+      background:#fff;
+      border-radius:10px;
+      padding: 1rem;
+      box-shadow:0 2px 8px rgba(0,0,0,0.06);
+    }
+    .card h3{
+      margin:.1rem 0 .35rem 0;
+      color: var(--brand-orange);
+      font-size:1.05rem;
+    }
+    .card ul{
+      margin:.4rem 0 0 .9rem;
+      padding:0;
+    }
+    .card li{
+      margin:.2rem 0;
+      line-height:1.45;
+    }
+
+    /* Stats/testimonials layout reused */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: .9rem;
+      margin: 1rem 0 0 0;
+    }
+    .stat-box {
+      background: #fff;               /* keep clean; lives inside light card */
+      padding: .9rem;
+      border-radius: 10px;
+      border:1px solid #ffe0c2;       /* subtle orange border */
+      text-align: left;
+    }
+    .stat-box h3 {
+      margin: 0 0 .2rem 0;
+      font-size: 1.2rem;
+      color: var(--link);             /* keep metric pop */
+    }
+    .stat-box p, .stat-box blockquote, .stat-box em {
+      margin: .25rem 0;
+      line-height: 1.45;
+    }
+
+    /* Testimonials block — all text orange to match 4-box headings */
+    .testimonials{
+      background: var(--card-accent);
+      border-radius: 10px;
+      padding: 1rem;
+      margin: .5rem 0 1.25rem 0;
+    }
+    .testimonials *{
+      color: var(--brand-orange) !important;
+    }
+    .testimonials h2{
+      text-align:center;
+      margin: 0 0 .8rem 0;
+      font-size:1.35rem;
+    }
+
+    /* Hopes list */
+    .hopes h2{
+      text-align:center;
+      margin: .75rem 0 .6rem 0;
+      color:#444;
+      font-size:1.2rem;
+    }
+    .hopes ul{
+      margin:.2rem 0 .6rem 1rem;
+    }
+    .hopes li{
+      font-style: italic;
+      color:#555;
+      line-height:1.45;
+      margin:.2rem 0;
+    }
+
+    /* CTA + form + contact — compact spacing */
+    .cta{
+      text-align:center;
+      margin: .9rem 0 1rem 0;
+    }
+    .cta a{
+      background-color: var(--link);
+      color: #fff;
+      padding: .6rem 1.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+    }
+    #lead-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .6rem;
+      margin: 1rem 0 .5rem 0;
+    }
+    #lead-form input[type="tel"]{ grid-column: span 2; }
     #lead-form input[type="text"],
     #lead-form input[type="email"],
     #lead-form input[type="tel"] {
-      padding: 0.6rem 0.8rem;
+      padding: .55rem .7rem;
       border: 1px solid #ccd6f6;
       border-radius: 6px;
-      font-size: 0.95rem;
+      font-size: .95rem;
     }
     #lead-form button {
-      background: #1a73e8;
+      background: var(--link);
       color: #fff;
       border: none;
-      padding: 0.7rem 1rem;
+      padding: .6rem .9rem;
       border-radius: 6px;
-      font-size: 1rem;
+      font-size: .98rem;
       cursor: pointer;
       transition: background 0.25s;
+      grid-column: span 2;
     }
     #lead-form button:hover { background: #155ec2; }
 
-    /* Testimonials block */
-    .testimonials {
-      background: #fff7f0;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-top: 2rem;
+    .contact {
+      margin-top: .5rem;
+      font-size: 0.95rem;
+      line-height:1.4;
+    }
+    a { color: var(--link); text-decoration: none; }
+
+    .qr{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:.6rem;
+      margin:.8rem 0 0 0;
+    }
+    .qr img{ width:110px; height:110px; }
+
+    footer {
+      text-align: center;
+      margin: .8rem 0 1.6rem 0;
+      font-size: 0.8rem;
+      color: #fff; /* on orange bg */
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 640px){
+      .grid, .stats { grid-template-columns: 1fr; }
+      #lead-form { grid-template-columns: 1fr; }
+      #lead-form button, #lead-form input[type="tel"]{ grid-column: auto; }
+      .logo-inline{ height:48px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="profile.jpg" alt="RS Profile" class="logo" />
-    <h1>Reshma Shah</h1>
+
+    <!-- Header: Name + Logo in same row -->
+    <div class="hero">
+      <h1>Reshma Shah</h1>
+      <img src="profile.jpg" alt="Reshma Shah Logo" class="logo-inline" />
+    </div>
+    <!-- Intro directly under header -->
     <div class="intro">
       <p>Unlocking business impact by bridging AI, data science, and business strategy:</p>
-    </div>
-    
-    <!-- Fractional Data & AI Strategy One-Pager -->
-    <div class="container" style="margin-top: 3rem; background:#fff7f0;">
-      <h1 style="text-align:center; margin-bottom:1rem;">Data & AI Analytics Strategist</h1>
-      <p style="text-align:center; font-size:1.1rem; color:#555; margin-bottom:2rem;">
+   <!-- Feature / Fractional section -->
+    <h2 class="section-title">Data &amp; AI Analytics Strategist</h2>
+    <p class="section-sub">Unlocking business impact with AI-driven insights, customer analytics, and growth strategies.</p>
 
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
-        <div style="background:#fff; border-radius:10px; padding:1.2rem; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-          <h3 style="color:#e67e22;">AI & Data Strategy</h3>
+    <section class="feature-section">
+      <div class="grid">
+        <div class="card">
+          <h3>AI &amp; Data Strategy</h3>
           <ul>
             <li>Confidently invest in AI and analytics initiatives that drive measurable ROI</li>
             <li>Influence leadership with data-driven storytelling</li>
@@ -147,95 +271,97 @@
           </ul>
         </div>
 
-        <div style="background:#fff; border-radius:10px; padding:1.2rem; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-          <h3 style="color:#e67e22;">Customer & CRM</h3>
+        <div class="card">
+          <h3>Customer &amp; CRM</h3>
           <ul>
             <li>Map and optimize B2C shopping journeys</li>
-            <li>CRM & lifecycle strategies (email, push, SMS)</li>
-            <li>Send-time optimization & dynamic personalization</li>
+            <li>CRM &amp; lifecycle strategies (email, push, SMS)</li>
+            <li>Send-time optimization &amp; dynamic personalization</li>
           </ul>
         </div>
 
-        <div style="background:#fff; border-radius:10px; padding:1.2rem; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-          <h3 style="color:#e67e22;">Marketing Optimization</h3>
+        <div class="card">
+          <h3>Marketing Optimization</h3>
           <ul>
-            <li>MMM & MTA to optimize channel ROI</li>
+            <li>MMM &amp; MTA to optimize channel ROI</li>
             <li>Reallocate budgets for higher ROAS</li>
-            <li>Balance paid & organic growth levers</li>
+            <li>Balance paid &amp; organic growth levers</li>
           </ul>
         </div>
 
-        <div style="background:#fff; border-radius:10px; padding:1.2rem; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-          <h3 style="color:#e67e22;">Experimentation & Loyalty</h3>
+        <div class="card">
+          <h3>Experimentation &amp; Loyalty</h3>
           <ul>
             <li>Incrementality testing for CRM campaigns</li>
-            <li>Build organizational muscle in Website & app experimentation (placements, adoption)</li>
+            <li>Build organizational muscle in Website &amp; app experimentation (placements, adoption)</li>
             <li>Loyalty analytics: customer segmentation, retention, LTV</li>
           </ul>
         </div>
       </div>
+    </section>
 
+    <!-- Testimonials: all orange text, compact -->
+    <section class="testimonials">
+      <h2>Client Testimonials 🚀</h2>
+      <div class="stats">
+        <div class="stat-box">
+          <h3>5+</h3>
+          <p><strong>New Channels Launched</strong></p>
+          <blockquote>"Reshma transformed our marketing with AI-driven content, clear dashboards, and investor-focused strategies."</blockquote>
+          <em>– JG, Founder &amp; CEO Real Estate Company</em>
+          <p><strong>Insight:</strong> AI-powered models combined with first-party data enabled us to deliver more relevant and timely content to rental property investors.</p>
+          <p><strong>Action:</strong> We scaled both the frequency and quality of our investor-facing content, leading to stronger engagement and better-informed clients.</p>
+        </div>
 
-    <!-- Client Testimonials -->
-    <div class="testimonials">
-      <h2 style="color: #444;">Client Testimonials 🚀</h2>
+        <div class="stat-box">
+          <h3>1-Pager+</h3>
+          <p><strong>Executive Summary</strong></p>
+          <blockquote>"Reshma turned our 25-page reports into clear, compelling 1-pagers that accelerated decisions and aligned leadership focus"</blockquote>
+          <em>– BS, Founder &amp; CEO AI Agentic Analytics for B2C</em>
+          <p><strong>Insight:</strong> Executive summaries that highlight what changed, why it matters, and what decisions are required keep leaders aligned and focused on outcomes.</p>
+          <p><strong>Action:</strong> We improved client adoption of our tool and increased business from existing clients by delivering sharper, more actionable updates.</p>
+        </div>
 
-    <div class="stats">
-      <div class="stat-box">
-        <h3>5+</h3>
-        <p>New Channels Launched</p>
-        <blockquote>"Reshma transformed our marketing with AI-driven content, clear dashboards, and investor-focused strategies."</blockquote>
-        <em>– JG, Founder & CEO Real Estate Company</em>
-        <p><strong>Insight:</strong> AI-powered models combined with first-party data enabled us to deliver more relevant and timely content to rental property investors.</p>
-        <p><strong>Action:</strong> We scaled both the frequency and quality of our investor-facing content, leading to stronger engagement and better-informed clients.</p>
+        <div class="stat-box">
+          <h3>5K+</h3>
+          <p><strong>Impressions Delivered (Goal)</strong></p>
+          <blockquote>"We never imagined this reach without a big agency!"</blockquote>
+          <em>– Ravi, New Investor</em>
+          <p><strong>Insight:</strong> Hyper-local targeting boosted visibility among new customers.</p>
+          <p><strong>Action:</strong> Launched a follow-up campaign for new customer leads.</p>
+        </div>
+
+        <div class="stat-box">
+          <h3>10+</h3>
+          <p><strong>Ad Creatives Launched (Goal)</strong></p>
+          <blockquote>"Each creative felt tailor-made for my business."</blockquote>
+          <em>– Priya, Salon Owner</em>
+          <p><strong>Insight:</strong> Multi-format testing prevented ad fatigue and lifted CTR.</p>
+          <p><strong>Action:</strong> Client adopted a monthly creative refresh cycle.</p>
+        </div>
       </div>
+    </section>
 
-      <div class="stat-box">
-        <h3>1-Pager+</h3>
-        <p>Executive Summary</p>
-        <blockquote>"Reshma turned our 25-page reports into clear, compelling 1-pagers that accelerated decisions and aligned leadership focus"</blockquote>
-        <em>– BS, Founder & CEO AI Agentic Analytics for B2C</em>
-        <p><strong>Insight:</strong> Executive summaries that highlight what changed, why it matters, and what decisions are required keep leaders aligned and focused on outcomes.</p>
-        <p><strong>Action:</strong> We improved client adoption of our tool and increased business from existing clients by delivering sharper, more actionable updates.</p>
-      </div>
+    <!-- Hopes -->
+    <section class="hopes">
+      <h2>What I Hope My Future Clients Say 🌟</h2>
+      <ul>
+        <li>“Reshma helped us reach more local customers than ever before.”</li>
+        <li>“Her ads turned clicks into real customers – all on a tight budget.”</li>
+        <li>“We finally understand what’s working in our marketing thanks to her clear reporting.”</li>
+      </ul>
+      <p style="font-size:0.95rem; color:#666; margin:.2rem 0 0 0;">
+        If you're a local Bay Area business ready to grow online, let's work together and make these testimonials real!
+      </p>
+    </section>
 
-      <div class="stat-box">
-        <h3>5K+</h3>
-        <p>Impressions Delivered (Goal)</p>
-        <blockquote>"We never imagined this reach without a big agency!"</blockquote>
-        <em>– Ravi, New Investor</em>
-        <p><strong>Insight:</strong> Hyper-local targeting boosted visibility among new customers.</p>
-        <p><strong>Action:</strong> Launched a follow-up campaign for new customer leads.</p>
-      </div>
-
-      <div class="stat-box">
-        <h3>10+</h3>
-        <p>Ad Creatives Launched (Goal)</p>
-        <blockquote>"Each creative felt tailor-made for my business."</blockquote>
-        <em>– Priya, Salon Owner</em>
-        <p><strong>Insight:</strong> Multi-format testing prevented ad fatigue and lifted CTR.</p>
-        <p><strong>Action:</strong> Client adopted a monthly creative refresh cycle.</p>
-      </div>
+    <!-- CTA -->
+    <div class="cta">
+      <a href="mailto:rshah30@gmail.com">Click here to start a conversation</a>
     </div>
 
-    <h2 style="margin-top: 3rem; color: #444;">What I Hope My Future Clients Say 🌟</h2>
-    <ul style="font-style: italic; color: #555; font-size: 0.95rem;">
-      <li>“Reshma helped us reach more local customers than ever before.”</li>
-      <li>“Her ads turned clicks into real customers – all on a tight budget.”</li>
-      <li>“We finally understand what’s working in our marketing thanks to her clear reporting.”</li>
-    </ul>
-    <p style="font-size: 0.95rem; color: #666;">
-      If you're a local Bay Area business ready to grow online, let's work together and make these testimonials real!
-    </p>
-
-    <div style="text-align: center; margin-top: 2rem;">
-      <a href="mailto:rshah30@gmail.com" style="background-color: #1a73e8; color: #fff; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block;">
-        Click here to start a conversation
-      </a>
-    </div>
-
-    <!-- ===== Lead-capture form ===== -->
-    <h2 style="margin-top:3rem;color:#444;">📬 Get a Free Growth Audit</h2>
+    <!-- Lead form -->
+    <h3 class="section-title" style="margin:.5rem 0 .6rem 0; font-size:1.2rem;">📬 Get a Free Growth Audit</h3>
     <form id="lead-form" action="https://formspree.io/f/xeokkrrl" method="POST">
       <input type="text"  name="name"   placeholder="Your name" required>
       <input type="email" name="email"  placeholder="Email address*" required>
@@ -243,19 +369,19 @@
       <input type="text"  name="_gotcha" style="display:none">
       <button type="submit">Send ➜</button>
     </form>
-    <!-- ===== end Lead-capture form ===== -->
 
+    <!-- Contact + QR (compact row) -->
     <div class="contact">
-      📧 Email: <a href="mailto:rshah30@gmail.com">rshah30@gmail.com</a><br/>
-      💼 LinkedIn: <a href="https://www.linkedin.com/in/reshma-shah-ai-analytics/" target="_blank">reshma-shah-ai-analytics</a><br/>
-      ✍️ Medium: <a href="https://medium.com/@reshma_shah" target="_blank">@reshma_shah</a><br/>
-      🌐 GitHub: <a href="https://github.com/reshshah" target="_blank">github.com/reshshah</a><br/>
+      📧 <a href="mailto:rshah30@gmail.com">rshah30@gmail.com</a> &nbsp;|&nbsp;
+      💼 <a href="https://www.linkedin.com/in/reshma-shah-ai-analytics/" target="_blank">LinkedIn</a> &nbsp;|&nbsp;
+      ✍️ <a href="https://medium.com/@reshma_shah" target="_blank">Medium</a> &nbsp;|&nbsp;
+      🌐 <a href="https://github.com/reshshah" target="_blank">GitHub</a>
+    </div>
+    <div class="qr">
+      <span style="font-weight:600;">Scan:</span>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Freshshah.github.io%2Fgrowwithaibay-profile%2F" alt="QR to profile" />
     </div>
 
-    <div class="qr-code">
-      <p><strong>Scan to view this profile:</strong></p>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Freshshah.github.io%2Fgrowwithaibay-profile%2F" alt="QR code to Reshma Shah profile" />
-    </div>
   </div>
 
   <footer>&copy; 2025 Reshma Shah – All rights reserved.</footer>
