@@ -8,11 +8,12 @@
     :root{
       --brand-bg: #ff7043;     /* page background */
       --card-accent: #fff7f0;  /* light orange cards */
-      --brand-orange:#e67e22;  /* headings in 4-box + testimonials */
+      --brand-orange:#e67e22;  /* orange accent */
       --ink:#1a1a1a;
       --muted:#555;
       --link:#1a73e8;
     }
+
     /* Page */
     body {
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -22,8 +23,8 @@
     }
     .container {
       max-width: 900px;
-      margin: 2rem auto;              /* tighter top/bottom */
-      padding: 1.25rem 1.25rem;       /* tighter padding */
+      margin: 1rem auto;              /* tighter top/bottom */
+      padding: 1rem 1rem;             /* tighter padding */
       background: #fff;
       box-shadow: 0 2px 12px rgba(0,0,0,0.08);
       border-radius: 12px;
@@ -34,152 +35,161 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:1rem;
-      margin-bottom: .75rem;          /* reduce whitespace */
+      gap:.75rem;
+      margin: 0 0 .4rem 0;            /* very tight */
     }
     h1 {
       color: var(--ink);
       font-size: 1.9rem;
-      line-height: 1.1;
+      line-height: 1.05;
       margin: 0;
     }
     .logo-inline{
-      height:56px;                    /* matches heading visually */
+      height:54px;
       width:auto;
       border-radius: 6px;
       object-fit: cover;
       flex-shrink:0;
     }
 
-    /* Intro directly under name */
+    /* Intro directly under name — extra tight */
     .intro{
-      margin: .25rem 0 1rem 0;        /* compact */
+      margin: .15rem 0 .5rem 0;
     }
     .intro p{
-      margin:.25rem 0 .25rem 0;
+      margin:.1rem 0 .1rem 0;
       color:#333;
     }
-    .intro ul{
-      margin:.25rem 0 0 1rem;
-      padding:0;
-    }
-    .intro li{
-      line-height:1.45;
-      margin:.2rem 0;
-    }
 
-    /* Section title */
+    /* Section title/subtitle */
     .section-title{
       text-align:center;
-      margin: .75rem 0 1rem 0;        /* compact */
-      font-size: 1.4rem;
+      margin: .5rem 0 .6rem 0;
+      font-size: 1.35rem;
       color: var(--ink);
     }
     .section-sub{
       text-align:center;
       color: var(--muted);
-      margin: 0 0 1.25rem 0;
-      font-size:1.02rem;
+      margin: 0 0 .9rem 0;
+      font-size:1rem;
     }
 
     /* Light-orange feature grid */
     .feature-section{
       background: var(--card-accent);
       border-radius: 10px;
-      padding: 1rem;
-      margin: .5rem 0 1.25rem 0;
+      padding: .8rem;
+      margin: .3rem 0 .9rem 0;
     }
     .grid{
       display:grid;
       grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: .9rem;                     /* tighter gaps */
+      gap: .75rem;
     }
     .card{
       background:#fff;
       border-radius:10px;
-      padding: 1rem;
+      padding: .9rem;
       box-shadow:0 2px 8px rgba(0,0,0,0.06);
     }
     .card h3{
-      margin:.1rem 0 .35rem 0;
+      margin:.05rem 0 .3rem 0;
       color: var(--brand-orange);
-      font-size:1.05rem;
+      font-size:1.02rem;
     }
     .card ul{
-      margin:.4rem 0 0 .9rem;
+      margin:.25rem 0 0 1rem;
       padding:0;
     }
     .card li{
-      margin:.2rem 0;
-      line-height:1.45;
+      margin:.15rem 0;
+      line-height:1.4;
     }
 
-    /* Stats/testimonials layout reused */
+    /* Stats/testimonials layout */
     .stats {
       display: grid;
       grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: .9rem;
-      margin: 1rem 0 0 0;
+      gap: .75rem;
+      margin: .6rem 0 0 0;
     }
     .stat-box {
-      background: #fff;               /* keep clean; lives inside light card */
-      padding: .9rem;
+      background: #fff;
+      padding: .85rem;
       border-radius: 10px;
-      border:1px solid #ffe0c2;       /* subtle orange border */
+      border:1px solid #ffe0c2;
       text-align: left;
     }
     .stat-box h3 {
-      margin: 0 0 .2rem 0;
-      font-size: 1.2rem;
-      color: var(--link);             /* keep metric pop */
+      margin: 0 0 .15rem 0;
+      font-size: 1.15rem;
+      color: var(--link);
     }
     .stat-box p, .stat-box blockquote, .stat-box em {
-      margin: .25rem 0;
-      line-height: 1.45;
+      margin: .2rem 0;
+      line-height: 1.4;
+      color: #000; /* black text underneath bullets */
     }
 
-    /* Testimonials block — all text orange to match 4-box headings */
+    /* Testimonials block — title black; add orange bullets for Insight/Action,
+       keep text black to mirror the cards above (orange accents, black body). */
     .testimonials{
       background: var(--card-accent);
       border-radius: 10px;
-      padding: 1rem;
-      margin: .5rem 0 1.25rem 0;
-    }
-    .testimonials *{
-      color: var(--brand-orange) !important;
+      padding: .9rem;
+      margin: .4rem 0 .9rem 0;
     }
     .testimonials h2{
+      color: var(--ink);
       text-align:center;
-      margin: 0 0 .8rem 0;
-      font-size:1.35rem;
+      margin: 0 0 .6rem 0;
+      font-size:1.25rem;
+      font-weight:700;
     }
+    /* Orange bullets for any paragraph whose first child is a <strong> (Insight/Action) */
+    .testimonials .stat-box p:has(> strong){
+      position: relative;
+      padding-left: 1rem;
+    }
+    .testimonials .stat-box p:has(> strong)::before{
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: 0;
+      line-height: 1.2;
+      color: var(--brand-orange);
+      font-size: 1.1rem;
+    }
+    /* Keep labels and all body text black */
+    .testimonials .stat-box strong { color: #000; }
 
     /* Hopes list */
     .hopes h2{
       text-align:center;
-      margin: .75rem 0 .6rem 0;
+      margin: .6rem 0 .4rem 0;
       color:#444;
-      font-size:1.2rem;
+      font-size:1.15rem;
     }
     .hopes ul{
-      margin:.2rem 0 .6rem 1rem;
+      margin:.1rem 0 .4rem 1rem;
     }
     .hopes li{
       font-style: italic;
       color:#555;
-      line-height:1.45;
-      margin:.2rem 0;
+      line-height:1.35;
+      margin:.15rem 0;
     }
 
     /* CTA + form + contact — compact spacing */
     .cta{
       text-align:center;
-      margin: .9rem 0 1rem 0;
+      margin: .6rem 0 .7rem 0;
     }
     .cta a{
       background-color: var(--link);
       color: #fff;
-      padding: .6rem 1.2rem;
+      padding: .55rem 1rem;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
@@ -188,14 +198,14 @@
     #lead-form {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: .6rem;
-      margin: 1rem 0 .5rem 0;
+      gap: .5rem;
+      margin: .7rem 0 .4rem 0;
     }
     #lead-form input[type="tel"]{ grid-column: span 2; }
     #lead-form input[type="text"],
     #lead-form input[type="email"],
     #lead-form input[type="tel"] {
-      padding: .55rem .7rem;
+      padding: .5rem .65rem;
       border: 1px solid #ccd6f6;
       border-radius: 6px;
       font-size: .95rem;
@@ -204,7 +214,7 @@
       background: var(--link);
       color: #fff;
       border: none;
-      padding: .6rem .9rem;
+      padding: .55rem .85rem;
       border-radius: 6px;
       font-size: .98rem;
       cursor: pointer;
@@ -214,9 +224,9 @@
     #lead-form button:hover { background: #155ec2; }
 
     .contact {
-      margin-top: .5rem;
+      margin-top: .4rem;
       font-size: 0.95rem;
-      line-height:1.4;
+      line-height:1.35;
     }
     a { color: var(--link); text-decoration: none; }
 
@@ -224,14 +234,14 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:.6rem;
-      margin:.8rem 0 0 0;
+      gap:.5rem;
+      margin:.6rem 0 0 0;
     }
-    .qr img{ width:110px; height:110px; }
+    .qr img{ width:100px; height:100px; }
 
     footer {
       text-align: center;
-      margin: .8rem 0 1.6rem 0;
+      margin: .6rem 0 1.2rem 0;
       font-size: 0.8rem;
       color: #fff; /* on orange bg */
     }
@@ -253,10 +263,13 @@
       <h1>Reshma Shah</h1>
       <img src="profile.jpg" alt="Reshma Shah Logo" class="logo-inline" />
     </div>
+
     <!-- Intro directly under header -->
     <div class="intro">
       <p>Unlocking business impact by bridging AI, data science, and business strategy:</p>
-   <!-- Feature / Fractional section -->
+    </div>
+
+    <!-- Feature / Fractional section -->
     <h2 class="section-title">Data &amp; AI Analytics Strategist</h2>
     <p class="section-sub">Unlocking business impact with AI-driven insights, customer analytics, and growth strategies.</p>
 
@@ -300,7 +313,7 @@
       </div>
     </section>
 
-    <!-- Testimonials: all orange text, compact -->
+    <!-- Testimonials: title black; orange bullets; black text -->
     <section class="testimonials">
       <h2>Client Testimonials 🚀</h2>
       <div class="stats">
@@ -361,7 +374,7 @@
     </div>
 
     <!-- Lead form -->
-    <h3 class="section-title" style="margin:.5rem 0 .6rem 0; font-size:1.2rem;">📬 Get a Free Growth Audit</h3>
+    <h3 class="section-title" style="margin:.4rem 0 .5rem 0; font-size:1.15rem;">📬 Get a Free Growth Audit</h3>
     <form id="lead-form" action="https://formspree.io/f/xeokkrrl" method="POST">
       <input type="text"  name="name"   placeholder="Your name" required>
       <input type="email" name="email"  placeholder="Email address*" required>
@@ -375,7 +388,6 @@
       📧 <a href="mailto:rshah30@gmail.com">rshah30@gmail.com</a> &nbsp;|&nbsp;
       💼 <a href="https://www.linkedin.com/in/reshma-shah-ai-analytics/" target="_blank">LinkedIn</a> &nbsp;|&nbsp;
       ✍️ <a href="https://medium.com/@reshma_shah" target="_blank">Medium</a> &nbsp;|&nbsp;
-      🌐 <a href="https://github.com/reshshah" target="_blank">GitHub</a>
     </div>
     <div class="qr">
       <span style="font-weight:600;">Scan:</span>
@@ -387,4 +399,3 @@
   <footer>&copy; 2025 Reshma Shah – All rights reserved.</footer>
 </body>
 </html>
-
