@@ -50,7 +50,19 @@
       border-radius: 6px;
       object-fit: cover;
       flex-shrink:0;
+      transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+      cursor: pointer;
     }
+    /* Logo link animation (hover/focus) */
+    .logo-link:hover .logo-inline,
+    .logo-link:focus .logo-inline,
+    .logo-link:focus-visible .logo-inline{
+      transform: scale(1.05) rotate(-1deg);
+      box-shadow: 0 0 0 3px rgba(26,115,232,.15);
+      filter: saturate(1.05);
+    }
+    .logo-link{ display:inline-block; outline: none; }
+    .logo-link:focus-visible{ outline: 2px dashed var(--link); outline-offset: 4px; border-radius: 8px; }
 
     /* Intro directly under name — extra tight */
     .intro{
@@ -125,10 +137,11 @@
       text-align: left;
       box-shadow:0 2px 8px rgba(0,0,0,0.06);
     }
+    /* Change testimonial “tile” headings to orange like fractional cards */
     .stat-box h3 {
       margin: 0 0 .15rem 0;
       font-size: 1.15rem;
-      color: var(--link);
+      color: var(--brand-orange);
     }
     .stat-box p, .stat-box blockquote, .stat-box em {
       margin: .2rem 0;
@@ -145,7 +158,7 @@
       font-weight:700;
     }
 
-    /* Orange bullets for Insight/Action lines in testimonials */
+    /* Bullets for Insight/Action lines in testimonials -> BLACK now */
     .testimonials .stat-box p:has(> strong){
       position: relative;
       padding-left: 1rem;
@@ -156,15 +169,15 @@
       left: 0;
       top: 0;
       line-height: 1.2;
-      color: var(--brand-orange);
+      color: #000; /* changed to black */
       font-size: 1.1rem;
     }
     .testimonials .stat-box strong { color: #000; }
 
-    /* Bullet list style used inside testimonials cards */
+    /* Bullet list style used inside testimonials cards -> BLACK bullets now */
     .t-list{ list-style:none; margin:.2rem 0 0 .2rem; padding:0; }
     .t-list li{ position:relative; padding-left:1rem; margin:.2rem 0; line-height:1.4; color:#000; }
-    .t-list li::before{ content:"•"; position:absolute; left:0; top:0; color:var(--brand-orange); font-size:1.1rem; line-height:1.2; }
+    .t-list li::before{ content:"•"; position:absolute; left:0; top:0; color:#000; font-size:1.1rem; line-height:1.2; }
     .t-quote{ font-style:italic; }
     .t-em{ font-style:normal; opacity:.9; }
 
@@ -262,10 +275,10 @@
 <body>
   <div class="container">
 
-    <!-- Header: Name + Logo in same row (logo now links to LinkedIn) -->
+    <!-- Header: Name + Logo in same row (logo links to LinkedIn with animation) -->
     <div class="hero">
       <h1>Reshma Shah</h1>
-      <a href="https://www.linkedin.com/in/reshma-shah-ai-analytics/" target="_blank" rel="noopener">
+      <a class="logo-link" href="https://www.linkedin.com/in/reshma-shah-ai-analytics/" target="_blank" rel="noopener" title="Open LinkedIn profile">
         <img src="profile.jpg" alt="Reshma Shah Logo" class="logo-inline" />
       </a>
     </div>
@@ -317,7 +330,7 @@
       </div>
     </section>
 
-    <!-- Testimonials: now visually unified with the fractional section -->
+    <!-- Testimonials: visually unified; bullets now black; tiles orange -->
     <section class="testimonials">
       <h2>Client Testimonials</h2>
       <div class="stats">
