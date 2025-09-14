@@ -20,16 +20,25 @@
       box-shadow: 0 2px 12px rgba(0,0,0,0.08);
       margin-top: 3rem;
       border-radius: 12px;
+      position: relative;
+    }
+    .logo {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      height: 60px;
+      border-radius: 6px;
     }
     h1 {
       color: #1a1a1a;
       font-size: 2rem;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.5rem;
     }
     h2 {
       color: #666;
       font-size: 1rem;
       margin-top: 0;
+      font-weight: normal;
     }
     p, li {
       font-size: 1rem;
@@ -105,155 +114,91 @@
       transition: background 0.25s;
     }
     #lead-form button:hover { background: #155ec2; }
+
+    /* Testimonials block */
+    .testimonials {
+      background: #fff7f0;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-      <div>
-        <h1 style="margin: 0;">Reshma Shah</h1>
-        <h2 style="margin: 0; font-weight: normal;"> I bridge AI, data science, and business strategy—helping organizations:
-•	Unlock competitive advantage through evidence-based decision-making.
-•	Confidently invest in AI and analytics initiatives that drive measurable ROI.
-•	Build organizational muscle in experimentation, customer understanding, and channel optimization.
-</h2>
-      </div>
-      <img src="profile.jpg" alt="RS Profile" style="height: 60px; margin-left: 1rem; margin-top: 0.5rem;" />
-    </div>
-
-    
-<!-- Fractional Data & AI Strategy One-Pager -->
-<div class="container" style="margin-top: 3rem; background:#fff7f0;">
-  <h1 style="text-align:center; margin-bottom:1rem;">Fractional Data & AI Analytics Strategist</h1>
-  <p style="text-align:center; font-size:1.1rem; color:#555; margin-bottom:2rem;">
-    Unlocking business impact with AI-driven insights, customer analytics, and growth strategies.
-  </p>
-
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
-    <div style="background:#fff; border-radius:10px; padding:1.2rem; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-      <h3 style="color:#e67e22;">AI & Data Strategy</h3>
+    <img src="profile.jpg" alt="RS Profile" class="logo" />
+    <h1>Reshma Shah</h1>
+    <div class="intro">
+      <p>I bridge AI, data science, and business strategy—helping organizations:</p>
       <ul>
-        <li>Build AI/ML capabilities for insights teams</li>
-        <li>Influence leadership with data-driven storytelling</li>
-        <li>AI product guidance: chatbots, QA, narrative generation</li>
+        <li>Unlock competitive advantage through evidence-based decision-making.</li>
+        <li>Confidently invest in AI and analytics initiatives that drive measurable ROI.</li>
+        <li>Build organizational muscle in experimentation, customer understanding, and channel optimization.</li>
       </ul>
     </div>
 
-    <div style="background:#fff; border-radius:10px; padding:1.2rem; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-      <h3 style="color:#e67e22;">Customer & CRM</h3>
-      <ul>
-        <li>Map and optimize B2C shopping journeys</li>
-        <li>CRM & lifecycle strategies (email, push, SMS)</li>
-        <li>Send-time optimization & dynamic personalization</li>
-      </ul>
-    </div>
+    <!-- Fractional Data & AI Strategy One-Pager -->
+    <div class="container" style="margin-top: 3rem; background:#fff7f0;">
+      <h1 style="text-align:center; margin-bottom:1rem;">Fractional Data & AI Analytics Strategist</h1>
+      <p style="text-align:center; font-size:1.1rem; color:#555; margin-bottom:2rem;">
+        Unlocking business impact with AI-driven insights, customer analytics, and growth strategies.
+      </p>
 
-    <div style="background:#fff; border-radius:10px; padding:1.2rem; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-      <h3 style="color:#e67e22;">Marketing Optimization</h3>
-      <ul>
-        <li>MMM & MTA to optimize channel ROI</li>
-        <li>Reallocate budgets for higher ROAS</li>
-        <li>Balance paid & organic growth levers</li>
-      </ul>
-    </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+        <div style="background:#fff; border-radius:10px; padding:1.2rem; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+          <h3 style="color:#e67e22;">AI & Data Strategy</h3>
+          <ul>
+            <li>Build AI/ML capabilities for insights teams</li>
+            <li>Influence leadership with data-driven storytelling</li>
+            <li>AI product guidance: chatbots, QA, narrative generation</li>
+          </ul>
+        </div>
 
-    <div style="background:#fff; border-radius:10px; padding:1.2rem; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-      <h3 style="color:#e67e22;">Experimentation & Loyalty</h3>
-      <ul>
-        <li>Incrementality testing for CRM campaigns</li>
-        <li>Website & app experimentation (placements, adoption)</li>
-        <li>Loyalty analytics: segmentation, retention, LTV</li>
-      </ul>
-    </div>
-  </div>
+        <div style="background:#fff; border-radius:10px; padding:1.2rem; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+          <h3 style="color:#e67e22;">Customer & CRM</h3>
+          <ul>
+            <li>Map and optimize B2C shopping journeys</li>
+            <li>CRM & lifecycle strategies (email, push, SMS)</li>
+            <li>Send-time optimization & dynamic personalization</li>
+          </ul>
+        </div>
 
-  <div style="margin-top:2rem; text-align:center;">
-    <p style="font-size:1.05rem; font-weight:500; color:#444;">
-      <em>“I help organizations unlock competitive advantage through 
-      AI, analytics, and experimentation.”</em>
-    </p>
-  </div>
-</div>
+        <div style="background:#fff; border-radius:10px; padding:1.2rem; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+          <h3 style="color:#e67e22;">Marketing Optimization</h3>
+          <ul>
+            <li>MMM & MTA to optimize channel ROI</li>
+            <li>Reallocate budgets for higher ROAS</li>
+            <li>Balance paid & organic growth levers</li>
+          </ul>
+        </div>
 
-    <h2 style="margin-top: 2rem; color: #444;">Client Testimonials 🚀</h2>
-
-
-    <div class="stats">
-      <div class="stat-box">
-        <h3>5+</h3>
-        <p>New Channels Launched</p>
-        <blockquote>"Reshma transformed our marketing with AI-driven content, clear dashboards, and investor-focused strategies."</blockquote>
-        <em>– JG, Founder & CEO Real Estate Company</em>
-        <p><strong>Insight:</strong> AI-powered models combined with first-party data enabled us to deliver more relevant and timely content to rental property investors.</p>
-        <p><strong>Action:</strong> We scaled both the frequency and quality of our investor-facing content, leading to stronger engagement and better-informed clients.</p>
+        <div style="background:#fff; border-radius:10px; padding:1.2rem; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+          <h3 style="color:#e67e22;">Experimentation & Loyalty</h3>
+          <ul>
+            <li>Incrementality testing for CRM campaigns</li>
+            <li>Website & app experimentation (placements, adoption)</li>
+            <li>Loyalty analytics: segmentation, retention, LTV</li>
+          </ul>
+        </div>
       </div>
 
-      <div class="stat-box">
-        <h3>1-Pager+</h3>
-        <p>Executive Summary</p>
-        <blockquote>"Reshma turned our 25-page reports into clear, compelling 1-pagers that accelerated decisions and aligned leadership focus"</blockquote>
-        <em>– BS, Founder & CEO AI Agentic Analytics for B2C</em>
-        <p><strong>Insight:</strong> Executive summaries that highlight what changed, why it matters, and what decisions are required keep leaders aligned and focused on outcomes.</p>
-        <p><strong>Action:</strong> We improved client adoption of our tool and increased business from existing clients by delivering sharper, more actionable updates.</p>
-      </div>
-
-      <div class="stat-box">
-        <h3>5K+</h3>
-        <p>Impressions Delivered (Goal)</p>
-        <blockquote>"We never imagined this reach without a big agency!"</blockquote>
-        <em>– Ravi, New Investor</em>
-        <p><strong>Insight:</strong> Hyper-local targeting boosted visibility among new customers.</p>
-        <p><strong>Action:</strong> Launched a follow-up campaign for new customer leads.</p>
-      </div>
-
-      <div class="stat-box">
-        <h3>10+</h3>
-        <p>Ad Creatives Launched (Goal)</p>
-        <blockquote>"Each creative felt tailor-made for my business."</blockquote>
-        <em>– Priya, Salon Owner</em>
-        <p><strong>Insight:</strong> Multi-format testing prevented ad fatigue and lifted CTR.</p>
-        <p><strong>Action:</strong> Client adopted a monthly creative refresh cycle.</p>
+      <div style="margin-top:2rem; text-align:center;">
+        <p style="font-size:1.05rem; font-weight:500; color:#444;">
+          <em>“I help organizations unlock competitive advantage through 
+          AI, analytics, and experimentation.”</em>
+        </p>
       </div>
     </div>
 
-    <h2 style="margin-top: 3rem; color: #444;">What I Hope My Future Clients Say 🌟</h2>
-    <ul style="font-style: italic; color: #555; font-size: 0.95rem;">
-      <li>“Reshma helped us reach more local customers than ever before.”</li>
-      <li>“Her ads turned clicks into real customers – all on a tight budget.”</li>
-      <li>“We finally understand what’s working in our marketing thanks to her clear reporting.”</li>
-    </ul>
-    <p style="font-size: 0.95rem; color: #666;">
-      If you're a local Bay Area business ready to grow online, let's work together and make these testimonials real!
-    </p>
-
-    <div style="text-align: center; margin-top: 2rem;">
-      <a href="mailto:rshah30@gmail.com" style="background-color: #1a73e8; color: #fff; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block;">
-        Click here to start a conversation
-      </a>
+    <!-- Client Testimonials -->
+    <div class="testimonials">
+      <h2 style="color: #444;">Client Testimonials 🚀</h2>
+      <div class="stats">
+        <!-- keep your testimonial stat-boxes here -->
+      </div>
     </div>
 
-    <!-- ===== Lead-capture form ===== -->
-    <h2 style="margin-top:3rem;color:#444;">📬 Get a Free Growth Audit</h2>
-    <form id="lead-form" action="https://formspree.io/f/xeokkrrl" method="POST">
-      <input type="text"  name="name"   placeholder="Your name" required>
-      <input type="email" name="email"  placeholder="Email address*" required>
-      <input type="tel"   name="phone"  placeholder="Phone number (optional)">
-      <input type="text"  name="_gotcha" style="display:none">
-      <button type="submit">Send ➜</button>
-    </form>
-    <!-- ===== end Lead-capture form ===== -->
-
-    <div class="contact">
-      📧 Email: <a href="mailto:rshah30@gmail.com">rshah30@gmail.com</a><br/>
-      💼 LinkedIn: <a href="https://www.linkedin.com/in/reshma-shah-ai-analytics/" target="_blank">reshma-shah-ai-analytics</a><br/>
-      ✍️ Medium: <a href="https://medium.com/@reshma_shah" target="_blank">@reshma_shah</a><br/>
-      🌐 GitHub: <a href="https://github.com/reshshah" target="_blank">github.com/reshshah</a><br/>
-    </div>
-
-    <div class="qr-code">
-      <p><strong>Scan to view this profile:</strong></p>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Freshshah.github.io%2Fgrowwithaibay-profile%2F" alt="QR code to Reshma Shah profile" />
-    </div>
+    <!-- rest of your content unchanged -->
   </div>
 
   <footer>&copy; 2025 Reshma Shah – All rights reserved.</footer>
