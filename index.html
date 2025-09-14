@@ -313,60 +313,70 @@
       </div>
     </section>
 
-    <!-- Testimonials: title black; orange bullets; black text -->
-    <section class="testimonials">
-      <h2>Client Testimonials 🚀</h2>
-      <div class="stats">
-        <div class="stat-box">
-          <h3>5+</h3>
-          <p><strong>New Channels Launched</strong></p>
-          <blockquote>"Reshma transformed our marketing with AI-driven content, clear dashboards, and investor-focused strategies."</blockquote>
-          <em>– JG, Founder &amp; CEO Real Estate Company</em>
-          <p><strong>Insight:</strong> AI-powered models combined with first-party data enabled us to deliver more relevant and timely content to rental property investors.</p>
-          <p><strong>Action:</strong> We scaled both the frequency and quality of our investor-facing content, leading to stronger engagement and better-informed clients.</p>
-        </div>
+   <!-- Testimonials: match card style (black title, orange bullets, black text) -->
+<section class="testimonials">
+  <style>
+    .testimonials{ background: var(--card-accent); border-radius:10px; padding:.9rem; margin:.4rem 0 .9rem 0; }
+    .testimonials h2{ color: var(--ink); text-align:center; margin:0 0 .6rem 0; font-size:1.25rem; font-weight:700; }
+    .testimonials .stats{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.75rem; margin:.6rem 0 0 0; }
+    .testimonials .stat-box{ background:#fff; border:1px solid #ffe0c2; border-radius:10px; padding:.85rem; }
+    .testimonials .stat-box h3{ margin:0 0 .25rem 0; font-size:1.1rem; color:var(--link); } /* keep your metric pop */
+    /* Make the content look like the cards: title + UL with orange bullets & black text */
+    .t-list{ list-style:none; margin:.2rem 0 0 .2rem; padding:0; }
+    .t-list li{ position:relative; padding-left:1rem; margin:.2rem 0; line-height:1.4; color:#000; }
+    .t-list li::before{ content:"•"; position:absolute; left:0; top:0; color:var(--brand-orange); font-size:1.1rem; line-height:1.2; }
+    /* Keep quoted lines visually distinct but still under bullets if desired */
+    .t-quote{ font-style:italic; }
+    .t-em{ font-style:normal; opacity:.9; }
+  </style>
 
-        <div class="stat-box">
-          <h3>1-Pager+</h3>
-          <p><strong>Executive Summary</strong></p>
-          <blockquote>"Reshma turned our 25-page reports into clear, compelling 1-pagers that accelerated decisions and aligned leadership focus"</blockquote>
-          <em>– BS, Founder &amp; CEO AI Agentic Analytics for B2C</em>
-          <p><strong>Insight:</strong> Executive summaries that highlight what changed, why it matters, and what decisions are required keep leaders aligned and focused on outcomes.</p>
-          <p><strong>Action:</strong> We improved client adoption of our tool and increased business from existing clients by delivering sharper, more actionable updates.</p>
-        </div>
-
-        <div class="stat-box">
-          <h3>5K+</h3>
-          <p><strong>Impressions Delivered (Goal)</strong></p>
-          <blockquote>"We never imagined this reach without a big agency!"</blockquote>
-          <em>– Ravi, New Investor</em>
-          <p><strong>Insight:</strong> Hyper-local targeting boosted visibility among new customers.</p>
-          <p><strong>Action:</strong> Launched a follow-up campaign for new customer leads.</p>
-        </div>
-
-        <div class="stat-box">
-          <h3>10+</h3>
-          <p><strong>Ad Creatives Launched (Goal)</strong></p>
-          <blockquote>"Each creative felt tailor-made for my business."</blockquote>
-          <em>– Priya, Salon Owner</em>
-          <p><strong>Insight:</strong> Multi-format testing prevented ad fatigue and lifted CTR.</p>
-          <p><strong>Action:</strong> Client adopted a monthly creative refresh cycle.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Hopes -->
-    <section class="hopes">
-      <h2>What I Hope My Future Clients Say 🌟</h2>
-      <ul>
-        <li>“Reshma helped us reach more local customers than ever before.”</li>
-        <li>“Her ads turned clicks into real customers – all on a tight budget.”</li>
-        <li>“We finally understand what’s working in our marketing thanks to her clear reporting.”</li>
+  <h2>Client Testimonials</h2>
+  <div class="stats">
+    <div class="stat-box">
+      <h3>5+</h3>
+      <ul class="t-list">
+        <li><strong>New Channels Launched</strong></li>
+        <li class="t-quote">"Reshma transformed our marketing with AI-driven content, clear dashboards, and investor-focused strategies."</li>
+        <li class="t-em">– JG, Founder &amp; CEO Real Estate Company</li>
+        <li><strong>Insight:</strong> AI-powered models combined with first-party data enabled us to deliver more relevant and timely content to rental property investors.</li>
+        <li><strong>Action:</strong> We scaled both the frequency and quality of our investor-facing content, leading to stronger engagement and better-informed clients.</li>
       </ul>
-      <p style="font-size:0.95rem; color:#666; margin:.2rem 0 0 0;">
-        If you're a local Bay Area business ready to grow online, let's work together and make these testimonials real!
-      </p>
-    </section>
+    </div>
+
+    <div class="stat-box">
+      <h3>1-Pager+</h3>
+      <ul class="t-list">
+        <li><strong>Executive Summary</strong></li>
+        <li class="t-quote">"Reshma turned our 25-page reports into clear, compelling 1-pagers that accelerated decisions and aligned leadership focus"</li>
+        <li class="t-em">– BS, Founder &amp; CEO AI Agentic Analytics for B2C</li>
+        <li><strong>Insight:</strong> Executive summaries that highlight what changed, why it matters, and what decisions are required keep leaders aligned and focused on outcomes.</li>
+        <li><strong>Action:</strong> We improved client adoption of our tool and increased business from existing clients by delivering sharper, more actionable updates.</li>
+      </ul>
+    </div>
+
+    <div class="stat-box">
+      <h3>5K+</h3>
+      <ul class="t-list">
+        <li><strong>Impressions Delivered (Goal)</strong></li>
+        <li class="t-quote">"We never imagined this reach without a big agency!"</li>
+        <li class="t-em">– Ravi, New Investor</li>
+        <li><strong>Insight:</strong> Hyper-local targeting boosted visibility among new customers.</li>
+        <li><strong>Action:</strong> Launched a follow-up campaign for new customer leads.</li>
+      </ul>
+    </div>
+
+    <div class="stat-box">
+      <h3>10+</h3>
+      <ul class="t-list">
+        <li><strong>Ad Creatives Launched (Goal)</strong></li>
+        <li class="t-quote">"Each creative felt tailor-made for my business."</li>
+        <li class="t-em">– Priya, Salon Owner</li>
+        <li><strong>Insight:</strong> Multi-format testing prevented ad fatigue and lifted CTR.</li>
+        <li><strong>Action:</strong> Client adopted a monthly creative refresh cycle.</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
     <!-- CTA -->
     <div class="cta">
@@ -385,7 +395,7 @@
 
     <!-- Contact + QR (compact row) -->
     <div class="contact">
-      📧 <a href="mailto:rshah30@gmail.com">rshah30@gmail.com</a> &nbsp;|&nbsp;
+      📧 <a href="mailto:rshah30@gmail.com" target="_blank">Email</a> &nbsp;|&nbsp;
       💼 <a href="https://www.linkedin.com/in/reshma-shah-ai-analytics/" target="_blank">LinkedIn</a> &nbsp;|&nbsp;
       ✍️ <a href="https://medium.com/@reshma_shah" target="_blank">Medium</a> &nbsp;|&nbsp;
     </div>
