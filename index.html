@@ -89,7 +89,8 @@
 
     /* Light-orange feature/testimonial wrapper (unified look) */
     .feature-section,
-    .testimonials{
+    .testimonials,
+    .articles{
       background: var(--card-accent);
       border-radius: 10px;
       padding: .8rem;
@@ -263,12 +264,59 @@
       color: #fff; /* on orange bg */
     }
 
+    /* --- Medium Articles (3x3 grid) --- */
+    .articles h2{
+      color: var(--ink);
+      text-align:center;
+      margin: 0 0 .6rem 0;
+      font-size:1.25rem;
+      font-weight:700;
+    }
+    .articles-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:.75rem;
+    }
+    .article-card{
+      background:#fff;
+      border-radius:10px;
+      padding:.85rem;
+      box-shadow:0 2px 8px rgba(0,0,0,0.06);
+      border:1px solid #ffe0c2;
+      display:flex;
+      flex-direction:column;
+      min-height: 120px;
+    }
+    .article-title{
+      font-size:1.0rem;
+      line-height:1.25;
+      color:var(--brand-orange);
+      margin:0 0 .35rem 0;
+    }
+    .article-meta{
+      font-size:.85rem;
+      color:#666;
+      margin-top:auto;
+    }
+    .article-card a.read{
+      align-self:flex-start;
+      margin-top:.5rem;
+      background:var(--link);
+      color:#fff;
+      padding:.35rem .6rem;
+      border-radius:6px;
+      text-decoration:none;
+      font-size:.9rem;
+      font-weight:600;
+    }
+
     /* Mobile tweaks */
     @media (max-width: 640px){
       .grid, .stats { grid-template-columns: 1fr; }
       #lead-form { grid-template-columns: 1fr; }
       #lead-form button, #lead-form input[type="tel"]{ grid-column: auto; }
       .logo-inline{ height:48px; }
+      .articles-grid{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -379,6 +427,40 @@
       </div>
     </section>
 
+    <!-- ===== NEW: Latest on Medium (3x3 grid) ===== -->
+    <section id="medium" class="articles">
+      <h2>Latest on Medium</h2>
+      <p class="section-sub" style="margin-top:-.25rem">Fresh posts on analytics, AI, experimentation &amp; growth</p>
+      <div id="articles" class="articles-grid" aria-live="polite">
+
+        <!-- Fallback cards (show if RSS fetch is blocked); replace or keep as-is -->
+        <article class="article-card">
+          <h3 class="article-title">Here is the link to Marketing Mix Modeling AI Assistant</h3>
+          <div class="article-meta">Mar 25, 2025</div>
+          <a class="read" href="https://medium.com/@reshma_shah/here-is-the-link-to-marketing-mix-modeling-ai-assistant-that-uses-dummy-data-to-show-how-to-d119e4bf13ff" target="_blank" rel="noopener">Read</a>
+        </article>
+
+        <article class="article-card">
+          <h3 class="article-title">Here is the link to Sentiment Analysis AI Assistant</h3>
+          <div class="article-meta">Mar 25, 2025</div>
+          <a class="read" href="https://medium.com/@reshma_shah/here-is-the-link-to-sentiment-analysis-ai-assistant-that-can-take-textual-review-data-output-e698d59bbaa0" target="_blank" rel="noopener">Read</a>
+        </article>
+
+        <!-- 7 empty placeholders maintain the 3×3 grid if no feed loads -->
+        <article class="article-card"><h3 class="article-title">Coming soon…</h3><div class="article-meta">Medium</div><a class="read" href="https://medium.com/@reshma_shah" target="_blank" rel="noopener">View all</a></article>
+        <article class="article-card"><h3 class="article-title">Coming soon…</h3><div class="article-meta">Medium</div><a class="read" href="https://medium.com/@reshma_shah" target="_blank" rel="noopener">View all</a></article>
+        <article class="article-card"><h3 class="article-title">Coming soon…</h3><div class="article-meta">Medium</div><a class="read" href="https://medium.com/@reshma_shah" target="_blank" rel="noopener">View all</a></article>
+        <article class="article-card"><h3 class="article-title">Coming soon…</h3><div class="article-meta">Medium</div><a class="read" href="https://medium.com/@reshma_shah" target="_blank" rel="noopener">View all</a></article>
+        <article class="article-card"><h3 class="article-title">Coming soon…</h3><div class="article-meta">Medium</div><a class="read" href="https://medium.com/@reshma_shah" target="_blank" rel="noopener">View all</a></article>
+        <article class="article-card"><h3 class="article-title">Coming soon…</h3><div class="article-meta">Medium</div><a class="read" href="https://medium.com/@reshma_shah" target="_blank" rel="noopener">View all</a></article>
+        <article class="article-card"><h3 class="article-title">Coming soon…</h3><div class="article-meta">Medium</div><a class="read" href="https://medium.com/@reshma_shah" target="_blank" rel="noopener">View all</a></article>
+
+      </div>
+      <p class="section-sub" style="margin:.75rem 0 0 0">
+        <a href="https://medium.com/@reshma_shah" target="_blank" rel="noopener">See all posts →</a>
+      </p>
+    </section>
+
     <!-- CTA -->
     <div class="cta">
       <a href="mailto:rshah30@gmail.com">Click here to start a conversation</a>
@@ -403,5 +485,52 @@
   </div>
 
   <footer>&copy; 2025 Reshma Shah – All rights reserved.</footer>
+
+  <!-- ===== Feed Loader (optional; replaces fallbacks with live posts) ===== -->
+  <script>
+    (function loadMedium(){
+      const grid = document.getElementById('articles');
+      if(!grid) return;
+
+      const FEED = 'https://medium.com/feed/@reshma_shah';
+      const PROXY = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(FEED);
+
+      fetch(PROXY, { cache: 'no-store' })
+        .then(res => res.text())
+        .then(xml => {
+          const doc = new window.DOMParser().parseFromString(xml, 'text/xml');
+          const items = Array.from(doc.querySelectorAll('item')).slice(0, 9);
+          if(!items.length) return;
+
+          // Clear current fallback cards
+          grid.innerHTML = '';
+
+          const strip = (html) => {
+            const d = document.createElement('div');
+            d.innerHTML = html || '';
+            return (d.textContent || '').trim();
+          };
+
+          items.forEach(it => {
+            const title = strip(it.querySelector('title')?.textContent || 'Untitled');
+            const link  = it.querySelector('link')?.textContent || '#';
+            const pub   = new Date(it.querySelector('pubDate')?.textContent || Date.now());
+            const date  = pub.toLocaleDateString(undefined, { year:'numeric', month:'short', day:'numeric' });
+
+            const card = document.createElement('article');
+            card.className = 'article-card';
+            card.innerHTML = `
+              <h3 class="article-title">${title}</h3>
+              <div class="article-meta">${date}</div>
+              <a class="read" href="${link}" target="_blank" rel="noopener">Read</a>
+            `;
+            grid.appendChild(card);
+          });
+        })
+        .catch(() => {
+          // keep fallbacks silently
+        });
+    })();
+  </script>
 </body>
 </html>
