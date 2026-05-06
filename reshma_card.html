@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reshma Shah — Decision Science & AI Leader</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #F7F4EE;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.card {
+  background: #111111;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 680px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.18);
+}
+
+/* TOP STRIP */
+.top {
+  padding: 36px 40px 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: start;
+}
+
+.name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+  color: #FFFFFF;
+  line-height: 1.1;
+  margin-bottom: 5px;
+}
+
+.role {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 12px;
+}
+
+.tagline {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.65;
+  max-width: 380px;
+}
+
+.badge-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.badge {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.b-blue { background: #EBF5FF; color: #0071CE; }
+.b-gold { background: rgba(201,168,76,0.15); color: #C9A84C; border: 1px solid rgba(201,168,76,0.3); }
+.b-gray { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.5); }
+
+/* STATS ROW */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.stat {
+  padding: 18px 20px;
+  border-right: 1px solid rgba(255,255,255,0.07);
+  text-align: center;
+}
+
+.stat:last-child { border-right: none; }
+
+.stat-n {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  color: #C9A84C;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+
+.stat-l {
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+/* SKILLS GRID */
+.skills {
+  padding: 24px 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.skill {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.skill-label {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 4px;
+}
+
+.skill-value {
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* COMPANIES */
+.companies {
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  overflow-x: auto;
+}
+
+.company-label {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-right: 16px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.company-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.co {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.05);
+  border-radius: 6px;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+/* BOTTOM */
+.bottom {
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quote {
+  font-family: 'DM Serif Display', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(255,255,255,0.35);
+  max-width: 380px;
+  line-height: 1.5;
+}
+
+.links {
+  display: flex;
+  gap: 10px;
+}
+
+.link {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  transition: all 0.2s;
+}
+
+.link:hover {
+  color: #C9A84C;
+  border-color: rgba(201,168,76,0.4);
+}
+
+@media(max-width: 560px) {
+  .top { grid-template-columns: 1fr; }
+  .badge-stack { flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
+  .stats { grid-template-columns: repeat(2,1fr); }
+  .skills { grid-template-columns: repeat(2,1fr); }
+  .bottom { flex-direction: column; gap: 16px; align-items: flex-start; }
+  .card { border-radius: 16px; }
+  .top, .skills, .companies, .bottom { padding-left: 24px; padding-right: 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- NAME & ROLE -->
+  <div class="top">
+    <div>
+      <div class="role">Decision Science &amp; AI · Bay Area, CA</div>
+      <div class="name">Reshma Shah</div>
+      <div class="tagline">Data is only as valuable as the decision it enables. I build analytics platforms — from incrementality frameworks to agentic AI — that turn first-party data into measurable business growth.</div>
+    </div>
+    <div class="badge-stack">
+      <span class="badge b-gold">15 years experience</span>
+      <span class="badge b-blue">Apple Search Ads Certified</span>
+      <span class="badge b-gray">MS Business Analytics · UTK</span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-n">$1B+</div>
+      <div class="stat-l">Revenue influenced</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">200+</div>
+      <div class="stat-l">A/B experiments designed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">$200M</div>
+      <div class="stat-l">Incrementality identified</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">60%</div>
+      <div class="stat-l">Faster insights via AI</div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="skills">
+    <div class="skill">
+      <div class="skill-label">Measurement</div>
+      <div class="skill-value">Incrementality · Attribution · MMM · Ghost Ads</div>
+    </div>
+    <div class="skill">
+      <div class="skill-label">AI & Automation</div>
+      <div class="skill-value">Agentic AI · LLMs · AWS Bedrock · Self-serve analytics</div>
+    </div>
+    <div class="skill">
+      <div class="skill-label">Modeling</div>
+      <div class="skill-value">Propensity · Collab filtering · NLP · Forecasting · LTV</div>
+    </div>
+    <div class="skill">
+      <div class="skill-label">Ads Platforms</div>
+      <div class="skill-value">Retail media · Sponsored listings · CTV · Off-site</div>
+    </div>
+    <div class="skill">
+      <div class="skill-label">Experimentation</div>
+      <div class="skill-value">A/B testing · Causal inference · DID · Switchback</div>
+    </div>
+    <div class="skill">
+      <div class="skill-label">Stack</div>
+      <div class="skill-value">SQL · Python · Snowflake · Tableau · Segment CDP</div>
+    </div>
+  </div>
+
+  <!-- COMPANIES -->
+  <div class="companies">
+    <span class="company-label">Experience</span>
+    <div class="company-list">
+      <span class="co">Walmart</span>
+      <span class="co">TripAdvisor</span>
+      <span class="co">Chewy</span>
+      <span class="co">Staples</span>
+      <span class="co">Macy's</span>
+    </div>
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="bottom">
+    <div class="quote">"Insights = Data + Action — powered by AI."</div>
+    <div class="links">
+      <a class="link" href="https://www.linkedin.com/in/reshma-shah-ai-analytics/" target="_blank">LinkedIn</a>
+      <a class="link" href="mailto:rshah30@gmail.com">Email</a>
+      <a class="link" href="https://medium.com/@reshma_shah" target="_blank">Medium</a>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
