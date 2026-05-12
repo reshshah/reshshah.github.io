@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google AI Professional Certificate — SJSU Analytics Program</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #111110; --ink-mid: #3d3c39; --ink-soft: #7a7870; --ink-ghost: #b4b2aa;
+    --paper: #faf9f6; --paper-warm: #f3f1eb; --paper-card: #ffffff; --rule: #e0ddd5;
+    --google-blue: #1a73e8; --google-red: #ea4335; --google-yellow: #fbbc04; --google-green: #34a853;
+    --accent: #1a73e8; --accent-light: #e8f0fe;
+    --teal: #0f7b6c; --teal-light: #e6f4f1;
+    --amber: #92520a; --amber-light: #fef3e2;
+    --coral: #c0392b; --coral-light: #fdecea;
+    --purple: #5b21b6; --purple-light: #ede9fe;
+    --green: #166534; --green-light: #dcfce7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); font-size: 14px; line-height: 1.6; }
+  .page { max-width: 1000px; margin: 0 auto; padding: 48px 40px 80px; }
+
+  /* HEADER */
+  .header { display: grid; grid-template-columns: 1fr auto; align-items: start; gap: 24px; padding-bottom: 28px; border-bottom: 2px solid var(--ink); margin-bottom: 36px; }
+  .eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px; }
+  .title { font-family: 'DM Serif Display', serif; font-size: 32px; line-height: 1.2; color: var(--ink); margin-bottom: 10px; }
+  .title em { font-style: italic; color: var(--accent); }
+  .subtitle { font-size: 13px; color: var(--ink-soft); font-weight: 400; }
+  .header-badges { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+  .header-badge { background: var(--ink); color: #fff; padding: 12px 20px; border-radius: 4px; text-align: center; min-width: 130px; }
+  .badge-num { font-family: 'DM Serif Display', serif; font-size: 32px; display: block; line-height: 1; }
+  .badge-label { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; margin-top: 3px; display: block; }
+  .sponsor-badge { background: var(--accent-light); border: 1px solid var(--accent); color: var(--accent); padding: 7px 14px; border-radius: 4px; font-size: 11px; font-weight: 600; text-align: center; min-width: 130px; }
+
+  /* SECTION TITLE */
+  .section-title { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 14px; padding-bottom: 6px; border-bottom: 1px solid var(--rule); }
+
+  /* FORMAT TOGGLE */
+  .format-toggle-wrap { display: flex; width: fit-content; background: var(--paper-warm); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; margin-bottom: 20px; }
+  .format-btn { padding: 9px 22px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; border: none; background: transparent; color: var(--ink-soft); cursor: pointer; transition: background 0.15s, color 0.15s; }
+  .format-btn.active { background: var(--ink); color: #fff; }
+  .format-btn:hover:not(.active) { background: var(--rule); color: var(--ink); }
+
+  /* FORMAT INFO BAR */
+  .format-info { display: none; align-items: center; background: var(--paper-card); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; font-size: 13px; gap: 28px; flex-wrap: wrap; }
+  .format-info.visible { display: flex; }
+  .fi-item { display: flex; flex-direction: column; gap: 2px; }
+  .fi-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-ghost); }
+  .fi-value { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .fi-divider { width: 1px; background: var(--rule); align-self: stretch; }
+  .theory-bar { display: flex; height: 5px; border-radius: 3px; overflow: hidden; width: 100px; margin-top: 5px; }
+  .theory-fill { background: var(--accent); }
+  .lab-fill { background: var(--google-green); }
+  .bar-legend { display: flex; gap: 10px; margin-top: 4px; font-size: 10px; color: var(--ink-soft); }
+  .bar-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 3px; }
+
+  /* SCHEDULE TABLE */
+  .schedule-table { width: 100%; border-collapse: collapse; margin-bottom: 48px; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+  .schedule-table thead tr { background: var(--ink); color: #fff; }
+  .schedule-table thead th { padding: 12px 16px; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-align: left; }
+  .schedule-table tbody tr { border-bottom: 1px solid var(--rule); background: var(--paper-card); transition: background 0.15s; }
+  .schedule-table tbody tr:last-child { border-bottom: none; }
+  .schedule-table tbody tr:hover { background: var(--paper-warm); }
+  .schedule-table td { padding: 14px 16px; vertical-align: top; font-size: 13px; line-height: 1.55; color: var(--ink-mid); }
+  .schedule-table td:first-child { width: 11%; font-weight: 600; color: var(--ink); border-right: 1px solid var(--rule); white-space: nowrap; }
+  .schedule-table td:nth-child(2) { width: 19%; font-weight: 500; color: var(--ink); }
+  .schedule-table td:nth-child(3) { width: 35%; }
+  .schedule-table td:nth-child(4) { width: 35%; }
+  .week-label { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; padding: 2px 8px; border-radius: 20px; margin-bottom: 4px; white-space: nowrap; }
+  .half-label { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; padding: 1px 6px; border-radius: 3px; margin-bottom: 4px; }
+  .half-theory { background: var(--accent-light); color: var(--accent); }
+  .half-lab    { background: var(--green-light);   color: var(--green); }
+  .tools-tag { display: inline-block; font-size: 10px; color: var(--ink-soft); background: var(--paper-warm); border: 1px solid var(--rule); border-radius: 3px; padding: 2px 7px; margin-top: 5px; }
+  .schedule-table tr.group-start td { border-top: 2px solid var(--rule); }
+
+  /* BENEFITS */
+  .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 48px; }
+  .benefit-card { background: var(--paper-card); border: 1px solid var(--rule); border-radius: 8px; padding: 18px 16px; }
+  .benefit-card .b-icon { width: 28px; height: 28px; border-radius: 6px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+  .benefit-card .b-title { font-size: 12px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .benefit-card .b-body  { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+  .benefit-card .b-stat  { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink); margin-bottom: 4px; display: block; }
+
+  /* PROJECTS */
+  .examples-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+  .examples-header h2 { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink); }
+  .sjsu-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: var(--google-blue); color: #fff; padding: 3px 10px; border-radius: 20px; }
+  .examples-intro { font-size: 13px; color: var(--ink-soft); margin-bottom: 24px; max-width: 740px; }
+  .examples-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 48px; }
+  .example-card { background: var(--paper-card); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; transition: transform 0.15s, box-shadow 0.15s; }
+  .example-card:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.07); }
+  .example-card-top { padding: 18px 18px 0; }
+  .project-num { font-size: 10px; font-weight: 600; color: var(--ink-ghost); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 5px; display: block; }
+  .example-tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; margin-bottom: 10px; }
+  .example-card h3 { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 6px; line-height: 1.3; }
+  .example-card .desc { font-size: 12.5px; color: var(--ink-mid); line-height: 1.55; margin-bottom: 14px; }
+  .example-divider { border: none; border-top: 1px solid var(--rule); }
+  .example-card-bottom { padding: 12px 18px 16px; }
+  .example-card-bottom .label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-ghost); margin-bottom: 6px; }
+  .skills-row { display: flex; flex-wrap: wrap; gap: 5px; }
+  .skill-chip { font-size: 11px; color: var(--ink-mid); background: var(--paper-warm); border: 1px solid var(--rule); padding: 2px 8px; border-radius: 3px; }
+
+  /* FOOTER */
+  .footer { border-top: 1px solid var(--rule); padding-top: 24px; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+  .footer-left { font-size: 11px; color: var(--ink-soft); line-height: 1.7; }
+  .footer-left strong { color: var(--ink); font-weight: 600; display: block; margin-bottom: 2px; }
+  .footer-right { display: flex; gap: 6px; align-items: center; }
+  .g-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* COLOR TOKENS */
+  .c-blue   { background: var(--accent-light);  color: var(--accent); }
+  .c-teal   { background: var(--teal-light);    color: var(--teal); }
+  .c-amber  { background: var(--amber-light);   color: var(--amber); }
+  .c-coral  { background: var(--coral-light);   color: var(--coral); }
+  .c-purple { background: var(--purple-light);  color: var(--purple); }
+  .c-green  { background: var(--green-light);   color: var(--green); }
+
+  .view { display: none; }
+  .view.visible { display: block; }
+
+  @media print {
+    .format-toggle-wrap { display: none; }
+    body { background: #fff; }
+    .page { padding: 24px; }
+  }
+  @media (max-width: 680px) {
+    .page { padding: 24px 16px 48px; }
+    .header { grid-template-columns: 1fr; }
+    .benefits-grid { grid-template-columns: 1fr 1fr; }
+    .examples-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="eyebrow">Prepared for SJSU &mdash; Business Analytics Program &nbsp;&middot;&nbsp; Lucas College of Business &nbsp;&middot;&nbsp; Updated May 2026</div>
+      <h1 class="title">Google <em>AI Professional</em> Certificate</h1>
+      <p class="subtitle">
+        Curriculum overview: Taking inspiration from the Google AI Professional Certificate &nbsp;&middot;&nbsp;
+        Offered in class at SJSU LCOB &nbsp;&middot;&nbsp; 7 Modules + 6 Portfolio Projects &nbsp;&middot;&nbsp; Theory + Hands-on Lab format &nbsp;&middot;&nbsp; Junior level
+      </p>
+
+    </div>
+  </div>
+
+  <!-- FORMAT TOGGLE -->
+  <div class="section-title">Class Schedule Format</div>
+  <div class="format-toggle-wrap">
+    <button class="format-btn active" onclick="switchFormat('8', this)">8-Week Intensive</button>
+    <button class="format-btn" onclick="switchFormat('16', this)">16-Week Full Semester</button>
+  </div>
+
+  <div class="format-info visible" id="info-8">
+    <div class="fi-item"><span class="fi-label">Duration</span><span class="fi-value">8 weeks</span></div>
+    <div class="fi-divider"></div>
+    <div class="fi-item"><span class="fi-label">Session length</span><span class="fi-value">3 hrs / week</span></div>
+    <div class="fi-divider"></div>
+    <div class="fi-item">
+      <span class="fi-label">Session split</span>
+      <span class="fi-value">1.5 hrs Theory &nbsp;+&nbsp; 1.5 hrs Lab</span>
+      <div class="theory-bar"><div class="theory-fill" style="width:50%"></div><div class="lab-fill" style="width:50%"></div></div>
+      <div class="bar-legend"><span><span class="bar-dot" style="background:var(--accent)"></span>Theory</span><span><span class="bar-dot" style="background:var(--google-green)"></span>Lab</span></div>
+    </div>
+    <div class="fi-divider"></div>
+    <div class="fi-item"><span class="fi-label">Modules per week</span><span class="fi-value">1 module per session</span></div>
+    <div class="fi-divider"></div>
+    <div class="fi-item"><span class="fi-label">Total contact hours</span><span class="fi-value">24 hrs</span></div>
+  </div>
+
+  <div class="format-info" id="info-16">
+    <div class="fi-item"><span class="fi-label">Duration</span><span class="fi-value">16 weeks</span></div>
+    <div class="fi-divider"></div>
+    <div class="fi-item"><span class="fi-label">Session length</span><span class="fi-value">1.5 hrs / week</span></div>
+    <div class="fi-divider"></div>
+    <div class="fi-item">
+      <span class="fi-label">Session split</span>
+      <span class="fi-value">45 min Theory &nbsp;+&nbsp; 45 min Lab</span>
+      <div class="theory-bar"><div class="theory-fill" style="width:50%"></div><div class="lab-fill" style="width:50%"></div></div>
+      <div class="bar-legend"><span><span class="bar-dot" style="background:var(--accent)"></span>Theory</span><span><span class="bar-dot" style="background:var(--google-green)"></span>Lab</span></div>
+    </div>
+    <div class="fi-divider"></div>
+    <div class="fi-item"><span class="fi-label">Pacing</span><span class="fi-value">Each module = 2 weeks</span></div>
+    <div class="fi-divider"></div>
+    <div class="fi-item"><span class="fi-label">Total contact hours</span><span class="fi-value">24 hrs</span></div>
+  </div>
+
+  <!-- 8-WEEK SCHEDULE -->
+  <div class="view visible" id="view-8">
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Module</th>
+          <th style="color:#93c5fd">Theory (1.5 hrs) &mdash; Watch &amp; Discuss</th>
+          <th style="color:#86efac">Lab (1.5 hrs) &mdash; Hands-on Practice</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="week-label c-blue">Week 1</span></td>
+          <td><span style="font-size:10px;color:var(--ink-ghost);font-weight:600">Module 1</span><br>AI Fundamentals<br><span class="tools-tag">Gemini</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch Google Coursera videos: what is AI, how LLMs work, responsible use, AI strengths &amp; limitations. Class discussion: where does AI fail in analytics contexts?</td>
+          <td><span class="half-label half-lab">Lab</span><br>Prompt engineering drills — write 5 prompts for the same task, compare outputs. Map 3 recurring analytics tasks at a real company that AI could accelerate.</td>
+        </tr>
+        <tr>
+          <td><span class="week-label c-teal">Week 2</span></td>
+          <td><span style="font-size:10px;color:var(--ink-ghost);font-weight:600">Module 2</span><br>AI for Brainstorming &amp; Planning<br><span class="tools-tag">Gemini</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: AI as creative collaborator, iterative prompting, turning vague briefs into structured plans. Discuss: how do analysts scope projects at firms like Deloitte?</td>
+          <td><span class="half-label half-lab">Lab — Project 1</span><br>Use Gemini to generate a workback plan, milestone list, and risk register from a provided analytics brief. Deliver a 1-page AI-generated project charter.</td>
+        </tr>
+        <tr>
+          <td><span class="week-label c-amber">Week 3</span></td>
+          <td><span style="font-size:10px;color:var(--ink-ghost);font-weight:600">Module 3</span><br>AI for Research &amp; Insights<br><span class="tools-tag">Deep Research &nbsp; NotebookLM</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: Deep Research and NotebookLM workflows, evidence-based synthesis, pressure-testing ideas. Industry case: how consultants build analyst briefing docs.</td>
+          <td><span class="half-label half-lab">Lab — Project 2</span><br>Upload 3 real earnings call transcripts into NotebookLM. Generate a SWOT comparison using Deep Research. 5-minute analyst-style briefing presented to class.</td>
+        </tr>
+        <tr>
+          <td><span class="week-label c-coral">Week 4</span></td>
+          <td><span style="font-size:10px;color:var(--ink-ghost);font-weight:600">Module 4</span><br>AI for Writing &amp; Communicating<br><span class="tools-tag">Gemini &nbsp; Gemini in Docs</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: adapting tone for different stakeholders, turning rough notes into executive summaries, simulating audience Q&amp;A. Discuss: how senior analysts write for C-suite vs. engineers.</td>
+          <td><span class="half-label half-lab">Lab — Project 3</span><br>Take one data insight and produce 3 formats using Gemini in Docs: a Slack update, an exec memo, and a technical appendix. Peer review round.</td>
+        </tr>
+        <tr>
+          <td><span class="week-label c-purple">Week 5</span></td>
+          <td><span style="font-size:10px;color:var(--ink-ghost);font-weight:600">Module 5</span><br>AI for Content Creation<br><span class="tools-tag">Gemini &nbsp; Gemini in Slides</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: AI-generated images, videos, and presentations. Discuss visual hierarchy, how to critique AI outputs, prompt revision cycles. Industry: marketing analytics decks.</td>
+          <td><span class="half-label half-lab">Lab — Project 4</span><br>Use Gemini in Slides to build a 6-slide data storytelling deck from a provided analytics finding. Peer critique and live prompt-revise round.</td>
+        </tr>
+        <tr>
+          <td><span class="week-label c-green">Week 6</span></td>
+          <td><span style="font-size:10px;color:var(--ink-ghost);font-weight:600">Module 6</span><br>AI for Data Analysis<br><span class="tools-tag">Gemini in Sheets</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: cleaning messy data with AI, natural language queries in Sheets, formula generation, pivot automation. Industry case: retail sales analysis at scale.</td>
+          <td><span class="half-label half-lab">Lab — Project 5</span><br>Load a real messy CSV. Use Gemini to clean, pivot, chart, and surface 3 actionable insights. Deliver a 1-page findings brief ready for a business review meeting.</td>
+        </tr>
+        <tr>
+          <td><span class="week-label c-blue">Week 7</span></td>
+          <td><span style="font-size:10px;color:var(--ink-ghost);font-weight:600">Module 7</span><br>AI for App Building<br><span class="tools-tag">Google AI Studio</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: vibe coding in Google AI Studio, building no-code AI apps, prompt-to-product workflow. Discuss: what separates an analyst tool from a demo?</td>
+          <td><span class="half-label half-lab">Lab — Project 6 kickoff</span><br>Choose one repeating analytics task. Scope and wireframe an AI Studio app that automates it. Team pairs finalize their capstone concept.</td>
+        </tr>
+        <tr>
+          <td><span class="week-label" style="background:#f1f0ea;color:var(--ink)">Week 8</span></td>
+          <td><span style="font-size:10px;color:var(--ink-ghost);font-weight:600">Capstone</span><br>Portfolio Demo Day</td>
+          <td><span class="half-label half-theory">Review</span><br>Instructor-led retrospective: responsible AI, industry trends, what hiring managers look for. Guest speaker from analytics or consulting. Certificate ceremony.</td>
+          <td><span class="half-label half-lab">Demo — Project 6</span><br>Teams demo their AI Studio app live. All 6 portfolio projects formatted for LinkedIn and resume. Google-sponsored certificate distributed.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 16-WEEK SCHEDULE -->
+  <div class="view" id="view-16">
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Module</th>
+          <th style="color:#93c5fd">Theory (45 min) &mdash; Watch &amp; Discuss</th>
+          <th style="color:#86efac">Lab (45 min) &mdash; Hands-on Practice</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="group-start">
+          <td><span class="week-label c-blue">Week 1</span></td>
+          <td rowspan="2"><span style="font-size:10px;color:var(--ink-ghost);font-weight:600">Module 1</span><br>AI Fundamentals<br><span class="tools-tag">Gemini</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: what is AI, how LLMs work, AI strengths &amp; limitations. Class discussion: where does AI fail in analytics? Real-world failure examples.</td>
+          <td><span class="half-label half-lab">Lab</span><br>Prompt engineering intro — write 5 prompts for the same task, compare outputs. Map 3 recurring workflow tasks at a real company AI could accelerate.</td>
+        </tr>
+        <tr>
+          <td><span class="week-label c-blue">Week 2</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: responsible AI, ethical use, bias in AI outputs. Discuss: how does an analyst use AI while staying accountable for conclusions?</td>
+          <td><span class="half-label half-lab">Lab</span><br>Responsible AI audit — evaluate 5 AI-generated analyst outputs for bias, accuracy, and appropriate use. Document findings with evidence.</td>
+        </tr>
+        <tr class="group-start">
+          <td><span class="week-label c-teal">Week 3</span></td>
+          <td rowspan="2"><span style="font-size:10px;color:var(--ink-ghost);font-weight:600">Module 2</span><br>AI for Brainstorming &amp; Planning<br><span class="tools-tag">Gemini</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: AI as creative collaborator, iterative prompting. Industry: how analysts at consulting firms scope analytics projects from a brief.</td>
+          <td><span class="half-label half-lab">Lab</span><br>Use Gemini to brainstorm and structure a project plan from a provided analytics brief. Generate a timeline, milestones, and success metrics.</td>
+        </tr>
+        <tr>
+          <td><span class="week-label c-teal">Week 4</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: workback planning, dependency mapping, prompt chaining for multi-step deliverables.</td>
+          <td><span class="half-label half-lab">Lab — Project 1</span><br>Deliver a 1-page AI-generated project charter: workback plan, risk register, and success metrics for the given analytics brief.</td>
+        </tr>
+        <tr class="group-start">
+          <td><span class="week-label c-amber">Week 5</span></td>
+          <td rowspan="2"><span style="font-size:10px;color:var(--ink-ghost);font-weight:600">Module 3</span><br>AI for Research &amp; Insights<br><span class="tools-tag">Deep Research &nbsp; NotebookLM</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: Deep Research and NotebookLM workflows, evidence-based synthesis. Industry: how consulting firms produce analyst briefing docs.</td>
+          <td><span class="half-label half-lab">Lab</span><br>Upload 2 earnings call transcripts to NotebookLM. Generate summaries and pose 5 analytical questions. Evaluate quality vs. manual research.</td>
+        </tr>
+        <tr>
+          <td><span class="week-label c-amber">Week 6</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: pressure-testing ideas with AI, fact-checking outputs, structuring competitive insights for decision-makers.</td>
+          <td><span class="half-label half-lab">Lab — Project 2</span><br>SWOT comparison across 3 competitor companies using NotebookLM + Deep Research. 5-minute analyst briefing presented to class.</td>
+        </tr>
+        <tr class="group-start">
+          <td><span class="week-label c-coral">Week 7</span></td>
+          <td rowspan="2"><span style="font-size:10px;color:var(--ink-ghost);font-weight:600">Module 4</span><br>AI for Writing &amp; Communicating<br><span class="tools-tag">Gemini &nbsp; Gemini in Docs</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: adapting AI outputs for different stakeholders, tone calibration, turning rough notes into executive summaries.</td>
+          <td><span class="half-label half-lab">Lab</span><br>Take a 3-bullet insight and generate a Slack update, exec memo, and technical summary. Class discussion on what changed between versions.</td>
+        </tr>
+        <tr>
+          <td><span class="week-label c-coral">Week 8</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: AI for presentation prep, simulating audience Q&amp;A, anticipating objections. Industry: analytics storytelling frameworks used at leading firms.</td>
+          <td><span class="half-label half-lab">Lab — Project 3</span><br>Produce 3 communication formats from a raw analytics insight using Gemini in Docs: Slack update, exec memo, technical appendix. Peer review.</td>
+        </tr>
+        <tr class="group-start">
+          <td><span class="week-label c-purple">Week 9</span></td>
+          <td rowspan="2"><span style="font-size:10px;color:var(--ink-ghost);font-weight:600">Module 5</span><br>AI for Content Creation<br><span class="tools-tag">Gemini &nbsp; Gemini in Slides</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: AI-generated images and presentations, visual hierarchy principles, how to critique and iterate on AI-created content.</td>
+          <td><span class="half-label half-lab">Lab</span><br>Generate and critique 3 AI-created slide designs for the same data finding. Prompt revision cycles to improve visual quality.</td>
+        </tr>
+        <tr>
+          <td><span class="week-label c-purple">Week 10</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: AI video generation, creative workflows for marketing analytics. Industry: how data teams use AI to accelerate reporting cycles.</td>
+          <td><span class="half-label half-lab">Lab — Project 4</span><br>Build a 6-slide data storytelling deck in Gemini Slides from a provided analytics finding. Live peer critique and prompt-revision round.</td>
+        </tr>
+        <tr class="group-start">
+          <td><span class="week-label c-green">Week 11</span></td>
+          <td rowspan="2"><span style="font-size:10px;color:var(--ink-ghost);font-weight:600">Module 6</span><br>AI for Data Analysis<br><span class="tools-tag">Gemini in Sheets</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: cleaning messy data with AI, natural language queries in Sheets, formula generation, pivot automation. Industry: retail analytics at scale.</td>
+          <td><span class="half-label half-lab">Lab</span><br>Load a messy dataset. Use Gemini to clean columns, fix formatting, and generate an initial pivot summary. Document every prompt used.</td>
+        </tr>
+        <tr>
+          <td><span class="week-label c-green">Week 12</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: AI-assisted data visualization, surfacing anomalies and trends with Gemini prompts, building compelling charts for business audiences.</td>
+          <td><span class="half-label half-lab">Lab — Project 5</span><br>Full analysis of a provided CSV: clean, chart, surface 3 actionable insights, and deliver a 1-page findings brief using Gemini in Sheets.</td>
+        </tr>
+        <tr class="group-start">
+          <td><span class="week-label c-blue">Week 13</span></td>
+          <td rowspan="2"><span style="font-size:10px;color:var(--ink-ghost);font-weight:600">Module 7</span><br>AI for App Building<br><span class="tools-tag">Google AI Studio</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: vibe coding in AI Studio, building no-code AI apps, prompt-to-product workflow. Discuss: what separates an analyst tool from a demo?</td>
+          <td><span class="half-label half-lab">Lab</span><br>AI Studio intro — build a simple text summarizer and a Q&amp;A bot using system prompts. Explore model parameters and controls hands-on.</td>
+        </tr>
+        <tr>
+          <td><span class="week-label c-blue">Week 14</span></td>
+          <td><span class="half-label half-theory">Theory</span><br>Watch: designing AI apps for real users, iterating on outputs, scoping v1 vs. future features. Capstone brief distributed and discussed.</td>
+          <td><span class="half-label half-lab">Lab — Project 6 kickoff</span><br>Choose an analytics workflow to automate. Scope, wireframe, and begin building your AI Studio app. Team pairs form and align on concept.</td>
+        </tr>
+        <tr class="group-start">
+          <td><span class="week-label" style="background:#f1f0ea;color:var(--ink)">Week 15</span></td>
+          <td rowspan="2"><span style="font-size:10px;color:var(--ink-ghost);font-weight:600">Capstone</span><br>Portfolio Demo Day</td>
+          <td><span class="half-label half-theory">Review</span><br>Responsible AI recap, where these tools are heading, what analytics hiring managers look for. Guest speaker from industry.</td>
+          <td><span class="half-label half-lab">Lab</span><br>Capstone polish sprint — finalize AI Studio app, format all 6 portfolio projects for LinkedIn and resume. Practice 5-minute demo pitch.</td>
+        </tr>
+        <tr>
+          <td><span class="week-label" style="background:#f1f0ea;color:var(--ink)">Week 16</span></td>
+          <td><span class="half-label half-theory">Showcase</span><br>Final retrospective and certificate ceremony. Google AI Pro account wrap-up and instructions for post-course continued access.</td>
+          <td><span class="half-label half-lab">Demo — Project 6</span><br>Teams demo their AI Studio app live. Google-sponsored certificate distributed. Portfolio review complete.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BENEFITS -->
+  <div class="section-title">Program-wide Benefits</div>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <span class="b-stat">6</span>
+      <div class="b-title">Hands-on portfolio projects</div>
+      <div class="b-body">Real deliverables built in class — each one drawn from an industry analytics workflow and shareable with employers on day one.</div>
+    </div>
+    <div class="benefit-card">
+      <span class="b-stat">3 mo.</span>
+      <div class="b-title">Google AI Pro — sponsored access</div>
+      <div class="b-body">Google sponsors free access for every enrolled student — Gemini Ultra, Deep Research, and AI Studio included throughout the course.</div>
+    </div>
+    <div class="benefit-card">
+      <span class="b-stat">24 hrs</span>
+      <div class="b-title">Instructor-led contact hours</div>
+      <div class="b-body">All learning happens in class — watching official Google Coursera videos together and practising alongside the instructor in real time.</div>
+    </div>
+    <div class="benefit-card">
+      <div class="b-icon c-blue">G</div>
+      <div class="b-title">Google-issued certificate</div>
+      <div class="b-body">Upon completion, Google sponsors a Google AI Professional Certificate recognized by Walmart, Deloitte, Verizon, Colgate-Palmolive, and other major employers.</div>
+    </div>
+    <div class="benefit-card">
+      <span class="b-stat">67.5%</span>
+      <div class="b-title">YoY growth in AI job postings</div>
+      <div class="b-body">Only 14% of workers have received AI training. Certified candidates entering the analytics job market are in short supply.</div>
+    </div>
+    <div class="benefit-card">
+      <div class="b-icon c-green">&rarr;</div>
+      <div class="b-title">Clear path to deeper skills</div>
+      <div class="b-body">Natural on-ramp to Google Cloud certifications, BigQuery, Vertex AI, and ML engineering roles across the analytics industry.</div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="examples-header">
+    <h2>6 Industry Portfolio Projects</h2>
+    <span class="sjsu-tag">SJSU Analytics &mdash; Junior Level</span>
+  </div>
+  <p class="examples-intro">
+    Every project is drawn from a real analytics workflow. Students build each one during the Lab half of the relevant session, using the same tools introduced in the Theory half. All six ship as portfolio pieces on completion.
+  </p>
+  <div class="examples-grid">
+
+    <div class="example-card">
+      <div class="example-card-top">
+        <span class="project-num">Project 01 &mdash; Module 2</span>
+        <span class="example-tag c-teal">Planning</span>
+        <h3>AI-Generated Analytics Project Charter</h3>
+        <p class="desc">Using a real analytics brief, students use Gemini to generate a structured workback plan, milestone list, risk register, and success metrics — packaged as a 1-page charter a hiring manager would recognize immediately.</p>
+      </div>
+      <hr class="example-divider">
+      <div class="example-card-bottom">
+        <div class="label">Skills demonstrated</div>
+        <div class="skills-row">
+          <span class="skill-chip">Project scoping</span><span class="skill-chip">Prompt chaining</span><span class="skill-chip">Workback planning</span><span class="skill-chip">Gemini</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-card-top">
+        <span class="project-num">Project 02 &mdash; Module 3</span>
+        <span class="example-tag c-amber">Research &amp; Insights</span>
+        <h3>Competitive Intelligence Briefing</h3>
+        <p class="desc">Students upload 3 real earnings call transcripts into NotebookLM and use Deep Research to build a structured SWOT comparison — then deliver a 5-minute analyst briefing to the class, mirroring work done at consulting firms.</p>
+      </div>
+      <hr class="example-divider">
+      <div class="example-card-bottom">
+        <div class="label">Skills demonstrated</div>
+        <div class="skills-row">
+          <span class="skill-chip">Document analysis</span><span class="skill-chip">NotebookLM</span><span class="skill-chip">Deep Research</span><span class="skill-chip">SWOT synthesis</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-card-top">
+        <span class="project-num">Project 03 &mdash; Module 4</span>
+        <span class="example-tag c-coral">Communication</span>
+        <h3>Multi-Audience Insight Communication</h3>
+        <p class="desc">Take a single data finding and produce three polished formats using Gemini in Docs — a Slack update, an executive memo, and a technical appendix. Demonstrates the core analyst skill of adapting message to stakeholder.</p>
+      </div>
+      <hr class="example-divider">
+      <div class="example-card-bottom">
+        <div class="label">Skills demonstrated</div>
+        <div class="skills-row">
+          <span class="skill-chip">Stakeholder writing</span><span class="skill-chip">Tone adaptation</span><span class="skill-chip">Exec communication</span><span class="skill-chip">Gemini in Docs</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-card-top">
+        <span class="project-num">Project 04 &mdash; Module 5</span>
+        <span class="example-tag c-purple">Content Creation</span>
+        <h3>Data Storytelling Pitch Deck</h3>
+        <p class="desc">Students use Gemini in Slides to build a 6-slide narrative deck from a provided analytics finding with AI-generated visuals. Peer critique and live prompt-revision rounds teach how to iterate AI outputs to professional standards.</p>
+      </div>
+      <hr class="example-divider">
+      <div class="example-card-bottom">
+        <div class="label">Skills demonstrated</div>
+        <div class="skills-row">
+          <span class="skill-chip">Data storytelling</span><span class="skill-chip">Slide generation</span><span class="skill-chip">Visual narrative</span><span class="skill-chip">Gemini in Slides</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-card-top">
+        <span class="project-num">Project 05 &mdash; Module 6</span>
+        <span class="example-tag c-green">Data Analysis</span>
+        <h3>Retail Sales Dashboard with NL Queries</h3>
+        <p class="desc">Load a real messy CSV into Google Sheets. Use Gemini to clean the data, generate pivot summaries, build charts, and surface 3 actionable insights in plain English. Deliverable: a 1-page findings brief ready for a business review.</p>
+      </div>
+      <hr class="example-divider">
+      <div class="example-card-bottom">
+        <div class="label">Skills demonstrated</div>
+        <div class="skills-row">
+          <span class="skill-chip">Data cleaning</span><span class="skill-chip">AI-assisted EDA</span><span class="skill-chip">NL-to-insight</span><span class="skill-chip">Gemini in Sheets</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-card-top">
+        <span class="project-num">Project 06 &mdash; Capstone</span>
+        <span class="example-tag c-blue">App Building</span>
+        <h3>KPI Monitoring App for a Real Business Workflow</h3>
+        <p class="desc">Teams identify one repeating analytics task — weekly KPI review, customer churn triage, or survey summarization — and build a working AI Studio app that automates it. Live demo on the final day. The centerpiece of every student's portfolio.</p>
+      </div>
+      <hr class="example-divider">
+      <div class="example-card-bottom">
+        <div class="label">Skills demonstrated</div>
+        <div class="skills-row">
+          <span class="skill-chip">Vibe coding</span><span class="skill-chip">AI Studio</span><span class="skill-chip">Workflow automation</span><span class="skill-chip">Product thinking</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      <strong>Prepared by Reshma Shah</strong><br>
+      <strong>For San Jose State University &mdash; Business Analytics Program</strong><br>
+      Offered in class at SJSU Lucas College of Business &nbsp;&middot;&nbsp; Junior level &nbsp;&middot;&nbsp; Updated May 2026<br>
+      Google AI Pro access &amp; certificate sponsored by Google<br>
+      <span style="color:var(--ink-ghost)">Taking inspiration from the Google AI Professional Certificate &mdash; Enroll via Coursera &mdash;</span> <strong style="font-weight:500;color:var(--accent)">coursera.org/professional-certificates/google-ai</strong>
+    </div>
+    <div class="footer-right">
+      <div class="g-dot" style="background:var(--google-blue)"></div>
+      <div class="g-dot" style="background:var(--google-red)"></div>
+      <div class="g-dot" style="background:var(--google-yellow)"></div>
+      <div class="g-dot" style="background:var(--google-green)"></div>
+    </div>
+  </div>
+
+</div>
+<script>
+function switchFormat(f, btn) {
+  document.querySelectorAll('.format-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.format-info').forEach(el => el.classList.remove('visible'));
+  document.querySelectorAll('.view').forEach(el => el.classList.remove('visible'));
+  btn.classList.add('active');
+  document.getElementById('info-' + f).classList.add('visible');
+  document.getElementById('view-' + f).classList.add('visible');
+}
+</script>
+</body>
+</html>
